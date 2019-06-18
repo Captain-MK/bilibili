@@ -13,12 +13,19 @@ class _animationPageState extends State<animationPage>  with SingleTickerProvide
     super.initState();
     controller = new AnimationController(
         duration: const Duration(milliseconds: 2000), vsync: this,debugLabel: '我爱你');
-    animation = new Tween(begin: 5.0, end: 255.0).animate(controller)
-      ..addListener(() {
-        setState(() {
-          // the state that has changed here is the animation object’s value
-        });
-      });
+    animation = new Tween(begin: 5.0, end: 255.0).animate(controller)..addStatusListener((status){
+      print('${status}');
+      if (status == AnimationStatus.completed) {
+        controller.reverse();
+      } else if (status == AnimationStatus.dismissed) {
+        controller.forward();
+      }
+    });
+//      ..addListener(() {
+//        setState(() {
+//          // the state that has changed here is the animation object’s value
+//        });
+//      });
     controller.forward();//开始动画
   }
 
@@ -28,17 +35,21 @@ class _animationPageState extends State<animationPage>  with SingleTickerProvide
       appBar: AppBar(
         title: Text('Animation'),
       ),
-      body: new Center(
-        child: new Container(
-          height: animation.value,
-          width: animation.value,
-          child: new FlutterLogo(),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(40.0),
-            color: Color.fromARGB(255, animation.value.toInt(), 155, 0),
-          ),
-        ),
-      ),
+
+      body:AnimatedLogo(animation: animation,),
+
+
+//      body: new Center(
+//        child: new Container(
+//          height: animation.value,
+//          width: animation.value,
+//          child: new FlutterLogo(),
+//          decoration: BoxDecoration(
+//            borderRadius: BorderRadius.circular(40.0),
+//            color: Color.fromARGB(255, animation.value.toInt(), 155, 0),
+//          ),
+//        ),
+//      ),
     );
   }
 
@@ -46,5 +57,27 @@ class _animationPageState extends State<animationPage>  with SingleTickerProvide
   dispose() {
     controller.dispose();
     super.dispose();
+  }
+}
+
+
+class AnimatedLogo extends AnimatedWidget {
+  AnimatedLogo({Key key, Animation<double> animation})
+      : super(key: key, listenable: animation);
+
+  Widget build(BuildContext context) {
+    final Animation<double> animation = listenable;
+    return new Center(
+      child: new Container(
+        margin: new EdgeInsets.symmetric(vertical: 10.0),
+        height: animation.value,
+        width: animation.value,
+        child: new FlutterLogo(),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(40.0),
+          color: Color.fromARGB(255, animation.value.toInt(), 155, 0),
+        ),
+      ),
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bilibili/Fragment/homePage/homeBody.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_bilibili/Fragment/homePage/homeAppBar.dart';
 
@@ -90,7 +91,6 @@ class _HomePageState extends State<HomePage>
       ],
     );
   }
-
   @override
   void initState() {
     // TODO: implement initState
@@ -106,21 +106,7 @@ class _HomePageState extends State<HomePage>
       appBar: homeAppBar(),
       body: Column(
         children: <Widget>[
-          Container(
-            height: 49.0,
-            child: TabBar(
-              controller: _tabbarController,
-              indicatorSize: TabBarIndicatorSize.label,
-              indicatorColor: Colors.pink,
-              tabs: <Widget>[
-                Text('直播', style: TextStyle(color: Colors.black54)),
-                Text('汽车', style: TextStyle(color: Colors.black54)),
-                Text('动态', style: TextStyle(color: Colors.black54)),
-                Text('我爱你', style: TextStyle(color: Colors.black54)),
-                Text('你不在', style: TextStyle(color: Colors.black54)),
-              ],
-            ),
-          ),
+          homeBody(_tabbarController),
           Divider(
             height: 1.0,
             color: Colors.black12,
