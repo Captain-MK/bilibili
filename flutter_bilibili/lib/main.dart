@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bilibili/Fragment/home_Page.dart';
+import 'package:flutter_bilibili/Fragment/homePage/home_Page.dart';
 import 'package:flutter_bilibili/Fragment/my_Page.dart';
 
 void main() => runApp(MyApp());
