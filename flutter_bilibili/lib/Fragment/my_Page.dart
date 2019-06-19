@@ -19,7 +19,6 @@ class _myPageState extends State<myPage> {
     return Scaffold(
       appBar: _show?AppBar(
         title: Text('我的'),
-        backgroundColor: Colors.red,
         brightness: Brightness.light,
         centerTitle: true,
       ):null,

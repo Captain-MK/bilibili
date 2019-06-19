@@ -12,7 +12,6 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   var _tabbarController;
   var _textFieldController;
-
   List<String> getDataList() {
     List<String> list = [];
     for (int i = 0; i < 10; i++) {
@@ -293,8 +292,10 @@ class _HomePageState extends State<HomePage>
                 Center(
                   child: Icon(Icons.add,size: 100.0,),
                 ),
-                Center(
-                  child: Icon(Icons.add,size: 100.0,),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                  ],
                 ),
               ],
             ),

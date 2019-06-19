@@ -1,26 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bilibili/AppModel.dart';
 import 'package:flutter_bilibili/Fragment/homePage/home_Page.dart';
 import 'package:flutter_bilibili/Fragment/my_Page.dart';
-import 'Fragment/animationPage.dart';
+import 'package:flutter_bilibili/Fragment/shoppingPage/shoppingPage.dart';
+import 'package:scoped_model/scoped_model.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:async';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.pink,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+    return ScopedModel(
+        model: AppModel(),
+        child: ScopedModelDescendant<AppModel>(
+          builder: (c,child,model){
+            print('child是什么${child}、${c}、${model}');
+            return MaterialApp(
+              title: 'Flutter Demo',
+              theme: ThemeData(primarySwatch: themeList[model.themeIndex],),
+              home: MyHomePage(title: 'Flutter Demo Home Page'),
+            );
+          })
+      );
   }
 }
-
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -31,10 +39,25 @@ class _MyHomePageState extends State<MyHomePage>{
     new HomePage(),
     new HomePage(),
     new HomePage(),
-    new animationPage(),
+    new shoppingPage(),
     new myPage(),
   ];
+  Future<String> getColor() async{
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    String value = sp.getString('navColor');
+    return value;
+  }
 
+  void asd ()async{
+    String a = await getColor();
+    print(a);
+  }
+@override
+  void initState(){
+    // TODO: implement initState
+    super.initState();
+    asd();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
