@@ -7,9 +7,16 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
-void main() => runApp(MyApp());
 
+//void main() => runApp(MyApp());
+void main() async {
+  int index = await AppModel().getSaveIndex();
+  print('index==${index}');
+  runApp(MyApp(index));
+}
 class MyApp extends StatelessWidget {
+  int index=0;
+  MyApp(this.index);
   @override
   Widget build(BuildContext context) {
     return ScopedModel(
@@ -19,7 +26,7 @@ class MyApp extends StatelessWidget {
             print('child是什么${child}、${c}、${model}');
             return MaterialApp(
               title: 'Flutter Demo',
-              theme: ThemeData(primarySwatch: themeList[model.themeIndex],),
+              theme: ThemeData(primarySwatch: themeList[model.themeIndex != 0?model.themeIndex:index],),
               home: MyHomePage(title: 'Flutter Demo Home Page'),
             );
           })
@@ -47,16 +54,10 @@ class _MyHomePageState extends State<MyHomePage>{
     String value = sp.getString('navColor');
     return value;
   }
-
-  void asd ()async{
-    String a = await getColor();
-    print(a);
-  }
 @override
   void initState(){
     // TODO: implement initState
     super.initState();
-    asd();
   }
   @override
   Widget build(BuildContext context) {

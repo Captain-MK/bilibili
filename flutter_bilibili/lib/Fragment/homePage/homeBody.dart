@@ -8,6 +8,16 @@ class homeBody extends StatefulWidget {
 }
 
 class _homeBodyState extends State<homeBody>{
+  var _index=0;
+  void getindex ()async{
+    _index = await AppModel().getSaveIndex();
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getindex();
+  }
   @override
   Widget build(BuildContext context) {
     final model = AppModel.of(context);
@@ -19,11 +29,11 @@ class _homeBodyState extends State<homeBody>{
           indicatorSize: TabBarIndicatorSize.label,
           indicatorColor: Colors.pink,
           tabs: <Widget>[
-            Text('直播', style: TextStyle(color: themeList[model.themeIndex])),
-            Text('汽车', style: TextStyle(color: themeList[model.themeIndex])),
-            Text('动态', style: TextStyle(color: themeList[model.themeIndex])),
-            Text('我爱你', style: TextStyle(color: themeList[model.themeIndex])),
-            Text('你不在', style: TextStyle(color: themeList[model.themeIndex])),
+            Text('直播', style: TextStyle(color: themeList[model.themeIndex != 0?model.themeIndex:_index])),
+            Text('汽车', style: TextStyle(color: themeList[model.themeIndex != 0?model.themeIndex:_index])),
+            Text('动态', style: TextStyle(color: themeList[model.themeIndex != 0?model.themeIndex:_index])),
+            Text('我爱你', style: TextStyle(color: themeList[model.themeIndex != 0?model.themeIndex:_index])),
+            Text('你不在', style: TextStyle(color: themeList[model.themeIndex != 0?model.themeIndex:_index])),
           ],
         ),
       );
