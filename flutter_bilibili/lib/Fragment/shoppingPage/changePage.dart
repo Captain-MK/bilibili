@@ -18,7 +18,6 @@ class _changePageState extends State<changePage> {
       ),
       onTap: (){
         appmodel.changeTheme(index);
-        print('点击了');
       },
     );
   }

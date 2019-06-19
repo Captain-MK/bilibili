@@ -9,7 +9,7 @@ class shoppingPage extends StatefulWidget {
 class _shoppingPageState extends State<shoppingPage> {
   @override
   Widget build(BuildContext context) {
-    final appModel = AppModel.of(context);
+    final model = AppModel.of(context);
     return Scaffold(
       appBar: AppBar(),
       body: Center(
@@ -19,7 +19,7 @@ class _shoppingPageState extends State<shoppingPage> {
           children: <Widget>[
             RaisedButton(
               child: Text('主题颜色',style: TextStyle(fontSize: 20.0)),
-              color: Colors.grey,
+              color: themeList[model.themeIndex],
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (content)=>changePage()));
               },
