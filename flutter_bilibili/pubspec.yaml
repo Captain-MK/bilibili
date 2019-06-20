@@ -26,6 +26,7 @@ dependencies:
   flutter_swiper: ^1.1.6
   shared_preferences: ^0.5.3
   scoped_model: ^1.0.1
+  flutter_screenutil: ^0.4.0
 
 dev_dependencies:
   flutter_test:

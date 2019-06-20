@@ -35,6 +35,7 @@ class _shoppingPageState extends State<shoppingPage> {
                 Navigator.of(context).push(MaterialPageRoute(builder: (content)=>changePage()));
               },
             ),
+            CircularProgressIndicator(),
           ],
         ),
       ),
