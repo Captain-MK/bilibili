@@ -106,6 +106,7 @@ class _myPageState extends State<myPage> {
 
 
 class tool extends ScreenUtil{
+  static const String wo = 'wo';
 //  final double _screenW = ScreenUtil.screenWidth;//私有属性。防止修改
 //  get screenW => _screenW;
 //  final double navHeight = ScreenUtil.statusBarHeight;

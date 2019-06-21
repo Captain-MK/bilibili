@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bilibili/AppModel.dart';
+import 'package:flutter_bilibili/Fragment/channelPage/channelPage.dart';
 import 'package:flutter_bilibili/Fragment/homePage/home_Page.dart';
 import 'package:flutter_bilibili/Fragment/my_Page.dart';
 import 'package:flutter_bilibili/Fragment/shoppingPage/shoppingPage.dart';
@@ -44,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage>{
   var _currentIndex = 0;
   final _body = [
     new HomePage(),
-    new HomePage(),
+    new channelPage(),
     new HomePage(),
     new shoppingPage(),
     new myPage(),
