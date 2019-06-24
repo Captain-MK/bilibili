@@ -9,6 +9,8 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 
+import 'Fragment/dynamic/dynamicPage.dart';
+
 //void main() => runApp(MyApp());
 void main() async {
   int index = await AppModel().getSaveIndex();
@@ -42,11 +44,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage>{
-  var _currentIndex = 0;
+  var _currentIndex = 2;
   final _body = [
     new HomePage(),
     new channelPage(),
-    new HomePage(),
+    new dynamicPage(),
     new shoppingPage(),
     new myPage(),
   ];

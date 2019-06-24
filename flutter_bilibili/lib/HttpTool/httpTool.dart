@@ -77,15 +77,15 @@ class HttpTool {
 
       String dataStr = json.encode(response.data);
       Map<String, dynamic> dataMap = json.decode(dataStr);
-      if (dataMap != null && dataMap[CODE] != 0) {
-        errorMsg =
-            '错误码：' + dataMap[CODE].toString() + '，' + response.data.toString();
-        _error(errorCallBack, errorMsg);
-        return;
-      }
+//      if (dataMap != null && dataMap[CODE] != 0) {
+//        errorMsg =
+//            '错误码：' + dataMap[CODE].toString() + '，' + response.data.toString();
+//        _error(errorCallBack, errorMsg);
+//        return;
+//      }
 
       if (successCallBack != null) {
-        successCallBack(dataMap[DATA]);
+        successCallBack(dataMap);
       }
     } catch (exception) {
       _error(errorCallBack, exception.toString());

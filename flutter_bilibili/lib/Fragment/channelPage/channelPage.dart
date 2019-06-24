@@ -10,7 +10,7 @@ class channelPage extends StatefulWidget {
 }
 
 class _channelPageState extends State<channelPage> {
-  NewsEntity _newsModel;
+  NewsEntity _newsModel = NewsEntity(datas: []);
   int _p = 0;
   RefreshController _refreshController;
   getHttp() {
@@ -18,9 +18,8 @@ class _channelPageState extends State<channelPage> {
     HttpTool.getInstance().get(
       'http://www.wanandroid.com/article/list/${_p}/json',
           (data) {
-        print(data);
         setState(() {
-          _newsModel = NewsEntity.fromJson(data);
+          _newsModel = NewsEntity.fromJson(data['data']);
         });
         _refreshController.refreshCompleted(resetFooterState: true);
       },
@@ -29,10 +28,9 @@ class _channelPageState extends State<channelPage> {
   }
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _refreshController = RefreshController(initialRefresh:true);
-    getHttp();
+//    getHttp();
   }
   void _onRefresh(){
     _p = 0;
@@ -58,8 +56,8 @@ class _channelPageState extends State<channelPage> {
         controller: _refreshController,
         onRefresh: _onRefresh,
         onLoading: _onLoading,
-        child: ListView.builder(
-          itemCount: _newsModel.datas.length,
+        child:_newsModel.datas.length > 0 ? ListView.builder(
+            itemCount: _newsModel.datas.length,
             itemBuilder:(c,i){
               NewsData model = _newsModel.datas[i];
               return InkWell(
@@ -103,7 +101,7 @@ class _channelPageState extends State<channelPage> {
                 },
               );
             }
-        ),
+        ):Center(child: Text('暂无数据'),),
       ),
     );
   }
