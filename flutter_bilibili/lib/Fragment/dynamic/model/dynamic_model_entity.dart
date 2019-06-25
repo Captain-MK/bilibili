@@ -81,6 +81,8 @@ class DynamicModelSubnavlist {
 		hideAppBar = json['hideAppBar'];
 	}
 
+  get statusBarColor => null;
+
 	Map<String, dynamic> toJson() {
 		final Map<String, dynamic> data = new Map<String, dynamic>();
 		data['icon'] = this.icon;

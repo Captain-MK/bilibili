@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bilibili/Fragment/dynamic/model/dynamic_model_entity.dart';
 import 'package:flutter_bilibili/Fragment/dynamic/widget/local_nav.dart';
 import 'package:flutter_bilibili/Fragment/dynamic/widget/middle_card.dart';
+import 'package:flutter_bilibili/Fragment/dynamic/widget/sub_nav.dart';
 import 'package:flutter_bilibili/Fragment/dynamic/widget/web_view.dart';
 import 'package:flutter_bilibili/HttpTool/httpTool.dart';
 import 'package:flutter_bilibili/entity_factory.dart';
@@ -49,6 +50,7 @@ class _dynamicPageState extends State<dynamicPage> {
             );
           },),
           MiddleCard(gridNavModel: _dynamicModelEntity.gridNav,),
+          SubNav(subNavList: _dynamicModelEntity.subNavList,),
         ],
       ):Container(child: Center(child: CircularProgressIndicator(),),),
     );
