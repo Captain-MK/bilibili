@@ -17,7 +17,6 @@ class _WebViewState extends State<WebView> {
   @override
   void initState() {
     super.initState();
-    flutterWebviewPlugin.close();
     _onUrlChanged = flutterWebviewPlugin.onUrlChanged.listen((String url) {
 
     });
@@ -55,28 +54,31 @@ class _WebViewState extends State<WebView> {
       backBtnColor = Colors.white;
     }
     return Scaffold(
-        body: Column(
-          children: <Widget>[
-            _appBar(Color(int.parse('0xff'+StateBackColor)),backBtnColor),
-            Expanded(
-              child: WebviewScaffold(
-                url: widget.model.url,
-                withZoom: true,//缩放
-                withLocalStorage: true,//本地缓存
-                hidden: true,//加载未出来之前 隐藏
-                initialChild: Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Loadding...'),
-                      CircularProgressIndicator(),
-                    ],
-                  ),
+        body: Container(
+          color: Colors.red,
+          child: Column(
+            children: <Widget>[
+              _appBar(Color(int.parse('0xff'+StateBackColor)),backBtnColor),
+              Expanded(
+                child: WebviewScaffold(
+                  url: widget.model.url,
+                  withZoom: true,//缩放
+                  withLocalStorage: true,//本地缓存
+                  hidden: true,//加载未出来之前 隐藏
+//                  initialChild: Container(//暂时不可以
+//                    child: Column(
+//                      mainAxisAlignment: MainAxisAlignment.center,
+//                      crossAxisAlignment: CrossAxisAlignment.center,
+//                      children: <Widget>[
+//                        Text('Loadding...'),
+//                        CircularProgressIndicator(),
+//                      ],
+//                    ),
+//                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
     );
   }
@@ -84,7 +86,7 @@ class _WebViewState extends State<WebView> {
       if(widget.model.hideAppBar){
         return Container(
           color: backColor,
-          height: 30.0,
+          height: 44.0,
         );
       } else{
         return FractionallySizedBox(//可以撑满宽度
@@ -96,6 +98,7 @@ class _WebViewState extends State<WebView> {
                   margin: EdgeInsets.only(left: 10.0),
                   child: Icon(Icons.close,color: backBtnColor,size: 26.0,),
                 ),
+                onTap: (){Navigator.of(context).pop();},
               ),
               Positioned(
                 left: 0.0,
