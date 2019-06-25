@@ -9,7 +9,6 @@ class WebView extends StatefulWidget {
   final String title;
   final String url;
   final bool hideAppBar;
-//  final DynamicModelLocalnavlist model;
   final bool backForbid;
 
   const WebView({Key key, this.statusBarColor, this.icon = '', this.title, this.url, this.hideAppBar = false, this.backForbid = false}) : super(key: key);//是否禁止返回

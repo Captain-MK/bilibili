@@ -2,83 +2,87 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bilibili/Fragment/dynamic/model/dynamic_model_entity.dart';
 import 'package:flutter_bilibili/Fragment/dynamic/widget/web_view.dart';
 
-class SubNav extends StatelessWidget {
-  final List<DynamicModelSubnavlist> subNavList;
-
-  const SubNav({Key key, this.subNavList}) : super(key: key);
-
+class SalesBox extends StatelessWidget {
+  final DynamicModelSalesbox salesBox;
+  const SalesBox({Key key, this.salesBox}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: Container(
-        height: 100.0,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(10.0),
         ),
-        child: Padding(
-          padding: EdgeInsets.all(7),
-          child: _items(context),
-        ),
+        child: _items(context),
       ),
     );
   }
-
   _items(BuildContext context) {
-    if (subNavList == null) return null;
+    if (salesBox == null) return null;
     List<Widget> items = [];
-    subNavList.forEach((model) {
-      items.add(_item(context, model));
-    });
-    //计算出第一行显示的行数
-    int separate = (subNavList.length / 2 + 0.5).toInt();
+    items.add(_item(context, salesBox.bigCard1, true,false));
+    items.add(_item(context, salesBox.bigCard2, true,false));
+    items.add(_item(context, salesBox.smallCard1, false,false));
+    items.add(_item(context, salesBox.smallCard2, false,false));
+    items.add(_item(context, salesBox.smallCard3, false,false));
+    items.add(_item(context, salesBox.smallCard4, false,true));
     return Column(
       children: <Widget>[
-        Row(
-          children: items.sublist(0, separate),
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 10.0),
+        Container(
+          height: 44,
+          margin: EdgeInsets.only(left: 10.0),
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(color: Color(0xfff2f2f2),width: 1.0),
+            ),
+          ),
           child: Row(
-            children: items.sublist(separate, subNavList.length),
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Image.network(salesBox.icon,fit: BoxFit.fill,height: 15.0,),
+              GestureDetector(child: Text('获取更多福利>   ',style: TextStyle(color: Colors.black54,fontSize: 13),),
+                onTap: (){
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (content)=>WebView(
+                        icon: salesBox.icon,
+                        title: '获取更多福利',
+                        url: salesBox.moreUrl,
+                      ))
+                  );
+                },
+              ),
+            ],
           ),
         ),
+        Row(children:items.sublist(0,2),),
+        Row(children:items.sublist(2,4),),
+        Row(children:items.sublist(4,6),),
       ],
     );
   }
-
-  Widget _item(BuildContext context, DynamicModelSubnavlist model) {
-    return Expanded(
-      flex: 1,
-      child: GestureDetector(
-        onTap: () {
-          Navigator.push(context,
-            MaterialPageRoute(builder: (content)=>WebView(statusBarColor:model.statusBarColor,
-              icon: model.icon,
-              title: model.title,
-              url: model.url,
-              hideAppBar: model.hideAppBar,
-            ))
-        );
-        },
-        child: Column(
-          children: <Widget>[
-            Image.network(
-              model.icon,
-              width: 18.0,
-              height: 18.0,
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 3.0),
-              child: Text(
-                model.title,
-                style: TextStyle(fontSize: 12),
-              ),
-            )
-          ],
+  Widget _item(BuildContext context, DynamicModelSalesboxModel model,bool big,bool last) {
+    BorderSide borderSide = BorderSide(width: 1.0,color: Color(0xfff2f2f2));
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context,
+          MaterialPageRoute(builder: (content)=>WebView(
+            icon: model.icon,
+            title: model.title,
+            url: model.url,
+          ))
+      );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: !last?borderSide:BorderSide.none,
+            right: !last?borderSide:BorderSide.none,
+          ),
+        ),
+        child: Image.network(
+          model.icon,
+          width: (MediaQuery.of(context).size.width-10)/2-1,
+          height: big?130.0:65,
         ),
       ),
     );

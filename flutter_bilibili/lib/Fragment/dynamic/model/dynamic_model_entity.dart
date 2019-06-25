@@ -122,24 +122,24 @@ class DynamicModelLocalnavlist {
 }
 
 class DynamicModelSalesbox {
-	DynamicModelSalesboxBigcard2 bigCard2;
-	DynamicModelSalesboxSmallcard4 smallCard4;
-	DynamicModelSalesboxSmallcard3 smallCard3;
-	DynamicModelSalesboxBigcard1 bigCard1;
-	DynamicModelSalesboxSmallcard2 smallCard2;
-	DynamicModelSalesboxSmallcard1 smallCard1;
+	DynamicModelSalesboxModel bigCard2;
+	DynamicModelSalesboxModel smallCard4;
+	DynamicModelSalesboxModel smallCard3;
+	DynamicModelSalesboxModel bigCard1;
+	DynamicModelSalesboxModel smallCard2;
+	DynamicModelSalesboxModel smallCard1;
 	String icon;
 	String moreUrl;
 
 	DynamicModelSalesbox({this.bigCard2, this.smallCard4, this.smallCard3, this.bigCard1, this.smallCard2, this.smallCard1, this.icon, this.moreUrl});
 
 	DynamicModelSalesbox.fromJson(Map<String, dynamic> json) {
-		bigCard2 = json['bigCard2'] != null ? new DynamicModelSalesboxBigcard2.fromJson(json['bigCard2']) : null;
-		smallCard4 = json['smallCard4'] != null ? new DynamicModelSalesboxSmallcard4.fromJson(json['smallCard4']) : null;
-		smallCard3 = json['smallCard3'] != null ? new DynamicModelSalesboxSmallcard3.fromJson(json['smallCard3']) : null;
-		bigCard1 = json['bigCard1'] != null ? new DynamicModelSalesboxBigcard1.fromJson(json['bigCard1']) : null;
-		smallCard2 = json['smallCard2'] != null ? new DynamicModelSalesboxSmallcard2.fromJson(json['smallCard2']) : null;
-		smallCard1 = json['smallCard1'] != null ? new DynamicModelSalesboxSmallcard1.fromJson(json['smallCard1']) : null;
+		bigCard2 = json['bigCard2'] != null ? new DynamicModelSalesboxModel.fromJson(json['bigCard2']) : null;
+		smallCard4 = json['smallCard4'] != null ? new DynamicModelSalesboxModel.fromJson(json['smallCard4']) : null;
+		smallCard3 = json['smallCard3'] != null ? new DynamicModelSalesboxModel.fromJson(json['smallCard3']) : null;
+		bigCard1 = json['bigCard1'] != null ? new DynamicModelSalesboxModel.fromJson(json['bigCard1']) : null;
+		smallCard2 = json['smallCard2'] != null ? new DynamicModelSalesboxModel.fromJson(json['smallCard2']) : null;
+		smallCard1 = json['smallCard1'] != null ? new DynamicModelSalesboxModel.fromJson(json['smallCard1']) : null;
 		icon = json['icon'];
 		moreUrl = json['moreUrl'];
 	}
@@ -169,125 +169,14 @@ class DynamicModelSalesbox {
 		return data;
 	}
 }
-
-class DynamicModelSalesboxBigcard2 {
+class DynamicModelSalesboxModel {
 	String icon;
 	String title;
 	String url;
 
-	DynamicModelSalesboxBigcard2({this.icon, this.title, this.url});
+	DynamicModelSalesboxModel({this.icon, this.title, this.url});
 
-	DynamicModelSalesboxBigcard2.fromJson(Map<String, dynamic> json) {
-		icon = json['icon'];
-		title = json['title'];
-		url = json['url'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['icon'] = this.icon;
-		data['title'] = this.title;
-		data['url'] = this.url;
-		return data;
-	}
-}
-
-class DynamicModelSalesboxSmallcard4 {
-	String icon;
-	String title;
-	String url;
-
-	DynamicModelSalesboxSmallcard4({this.icon, this.title, this.url});
-
-	DynamicModelSalesboxSmallcard4.fromJson(Map<String, dynamic> json) {
-		icon = json['icon'];
-		title = json['title'];
-		url = json['url'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['icon'] = this.icon;
-		data['title'] = this.title;
-		data['url'] = this.url;
-		return data;
-	}
-}
-
-class DynamicModelSalesboxSmallcard3 {
-	String icon;
-	String title;
-	String url;
-
-	DynamicModelSalesboxSmallcard3({this.icon, this.title, this.url});
-
-	DynamicModelSalesboxSmallcard3.fromJson(Map<String, dynamic> json) {
-		icon = json['icon'];
-		title = json['title'];
-		url = json['url'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['icon'] = this.icon;
-		data['title'] = this.title;
-		data['url'] = this.url;
-		return data;
-	}
-}
-
-class DynamicModelSalesboxBigcard1 {
-	String icon;
-	String title;
-	String url;
-
-	DynamicModelSalesboxBigcard1({this.icon, this.title, this.url});
-
-	DynamicModelSalesboxBigcard1.fromJson(Map<String, dynamic> json) {
-		icon = json['icon'];
-		title = json['title'];
-		url = json['url'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['icon'] = this.icon;
-		data['title'] = this.title;
-		data['url'] = this.url;
-		return data;
-	}
-}
-
-class DynamicModelSalesboxSmallcard2 {
-	String icon;
-	String title;
-	String url;
-
-	DynamicModelSalesboxSmallcard2({this.icon, this.title, this.url});
-
-	DynamicModelSalesboxSmallcard2.fromJson(Map<String, dynamic> json) {
-		icon = json['icon'];
-		title = json['title'];
-		url = json['url'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['icon'] = this.icon;
-		data['title'] = this.title;
-		data['url'] = this.url;
-		return data;
-	}
-}
-
-class DynamicModelSalesboxSmallcard1 {
-	String icon;
-	String title;
-	String url;
-
-	DynamicModelSalesboxSmallcard1({this.icon, this.title, this.url});
-
-	DynamicModelSalesboxSmallcard1.fromJson(Map<String, dynamic> json) {
+	DynamicModelSalesboxModel.fromJson(Map<String, dynamic> json) {
 		icon = json['icon'];
 		title = json['title'];
 		url = json['url'];
