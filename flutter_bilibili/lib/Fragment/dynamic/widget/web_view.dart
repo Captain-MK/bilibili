@@ -2,10 +2,17 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bilibili/Fragment/dynamic/model/dynamic_model_entity.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+const CATCH_URLS = ['m.ctrip.com/','m.ctrip.com/html5/','m.ctrip.com/html5'];//白名单
 class WebView extends StatefulWidget {
-  final DynamicModelLocalnavlist model;
+  final String statusBarColor;
+  final String icon;
+  final String title;
+  final String url;
+  final bool hideAppBar;
+//  final DynamicModelLocalnavlist model;
+  final bool backForbid;
 
-  const WebView({Key key, this.model}) : super(key: key);
+  const WebView({Key key, this.statusBarColor, this.icon = '', this.title, this.url, this.hideAppBar = false, this.backForbid = false}) : super(key: key);//是否禁止返回
   @override
   _WebViewState createState() => _WebViewState();
 }
@@ -14,6 +21,7 @@ class _WebViewState extends State<WebView> {
   final flutterWebviewPlugin = new FlutterWebviewPlugin();
   StreamSubscription<String> _onUrlChanged;
   StreamSubscription<WebViewStateChanged> _onStateChanged;
+  bool exiting = false;
   @override
   void initState() {
     super.initState();
@@ -24,6 +32,14 @@ class _WebViewState extends State<WebView> {
       switch(state.type){
         case WebViewState.shouldStart:
           // TODO: Handle this case.
+          if(_isToMain(state.url) && !exiting){
+            if(widget.backForbid){
+              flutterWebviewPlugin.launch(widget.url);
+            }else{
+              Navigator.pop(context);
+              exiting = true;
+            }
+          }
           break;
         case WebViewState.startLoad:
           // TODO: Handle this case.
@@ -37,16 +53,26 @@ class _WebViewState extends State<WebView> {
       }
     });
   }
+  _isToMain(String url){
+    bool contain = false;
+    for(final value in CATCH_URLS){
+      if(url?.endsWith(value)??false){
+        contain = true;
+        break;
+      }
+    }
+    return contain;
+  }
   @override
   void dispose() {
-    super.dispose();
     flutterWebviewPlugin.dispose();
     _onUrlChanged.cancel();
     _onStateChanged.cancel();
+    super.dispose();
   }
   @override
   Widget build(BuildContext context) {
-    String StateBackColor = widget.model.statusBarColor ?? 'ffffff';
+    String StateBackColor = widget.statusBarColor ?? 'ffffff';
     Color backBtnColor;
     if(StateBackColor=='ffffff'){
       backBtnColor = Colors.black;
@@ -61,7 +87,7 @@ class _WebViewState extends State<WebView> {
               _appBar(Color(int.parse('0xff'+StateBackColor)),backBtnColor),
               Expanded(
                 child: WebviewScaffold(
-                  url: widget.model.url,
+                  url: widget.url,
                   withZoom: true,//缩放
                   withLocalStorage: true,//本地缓存
                   hidden: true,//加载未出来之前 隐藏
@@ -83,29 +109,36 @@ class _WebViewState extends State<WebView> {
     );
   }
   Widget _appBar(Color backColor,Color backBtnColor){
-      if(widget.model.hideAppBar){
+      if(widget.hideAppBar){
         return Container(
           color: backColor,
-          height: 44.0,
+          height: 30.0,
         );
       } else{
-        return FractionallySizedBox(//可以撑满宽度
-          widthFactor: 1.0,//让Stack宽度撑满
-          child: Stack(
-            children: <Widget>[
-              GestureDetector(
-                child: Container(
-                  margin: EdgeInsets.only(left: 10.0),
-                  child: Icon(Icons.close,color: backBtnColor,size: 26.0,),
+        return Container(
+          color: backColor,
+          padding: EdgeInsets.fromLTRB(0, 40, 0, 10),
+          child: FractionallySizedBox(//可以撑满宽度
+            widthFactor: 1.0,//让Stack宽度撑满
+            child: Stack(
+              children: <Widget>[
+                GestureDetector(
+                  child: Container(
+                    margin: EdgeInsets.only(left: 10.0),
+                    child: Icon(Icons.close,color: backBtnColor,size: 26.0,),
+                  ),
+                  onTap: (){
+                    flutterWebviewPlugin.close();
+                    Navigator.pop(context);
+                    },
                 ),
-                onTap: (){Navigator.of(context).pop();},
-              ),
-              Positioned(
-                left: 0.0,
-                right: 0.0,
-                child: Center(child: Text(widget.model.title!=null?widget.model.title:'',style: TextStyle(color: backBtnColor,fontSize: 20.0),),),
-              ),
-            ],
+                Positioned(
+                  left: 0.0,
+                  right: 0.0,
+                  child: Center(child: Text(widget.title!=null?widget.title:'',style: TextStyle(color: backBtnColor,fontSize: 20.0),),),
+                ),
+              ],
+            ),
           ),
         );
       }

@@ -317,16 +317,16 @@ class DynamicModelConfig {
 }
 
 class DynamicModelGridnav {
-	DynamicModelGridnavFlight flight;
-	DynamicModelGridnavHotel hotel;
-	DynamicModelGridnavTravel travel;
+	DynamicModelGridnavModel flight;
+	DynamicModelGridnavModel hotel;
+	DynamicModelGridnavModel travel;
 
 	DynamicModelGridnav({this.flight, this.hotel, this.travel});
 
 	DynamicModelGridnav.fromJson(Map<String, dynamic> json) {
-		flight = json['flight'] != null ? new DynamicModelGridnavFlight.fromJson(json['flight']) : null;
-		hotel = json['hotel'] != null ? new DynamicModelGridnavHotel.fromJson(json['hotel']) : null;
-		travel = json['travel'] != null ? new DynamicModelGridnavTravel.fromJson(json['travel']) : null;
+		flight = json['flight'] != null ? new DynamicModelGridnavModel.fromJson(json['flight']) : null;
+		hotel = json['hotel'] != null ? new DynamicModelGridnavModel.fromJson(json['hotel']) : null;
+		travel = json['travel'] != null ? new DynamicModelGridnavModel.fromJson(json['travel']) : null;
 	}
 
 	Map<String, dynamic> toJson() {
@@ -344,24 +344,24 @@ class DynamicModelGridnav {
 	}
 }
 
-class DynamicModelGridnavFlight {
-	DynamicModelGridnavFlightItem2 item2;
-	DynamicModelGridnavFlightItem1 item1;
+class DynamicModelGridnavModel {
+	DynamicModelGridnavCommentModel item2;
+	DynamicModelGridnavCommentModel item1;
 	String endColor;
-	DynamicModelGridnavFlightMainitem mainItem;
-	DynamicModelGridnavFlightItem4 item4;
-	DynamicModelGridnavFlightItem3 item3;
+	DynamicModelGridnavCommentModel mainItem;
+	DynamicModelGridnavCommentModel item4;
+	DynamicModelGridnavCommentModel item3;
 	String startColor;
 
-	DynamicModelGridnavFlight({this.item2, this.item1, this.endColor, this.mainItem, this.item4, this.item3, this.startColor});
+	DynamicModelGridnavModel({this.item2, this.item1, this.endColor, this.mainItem, this.item4, this.item3, this.startColor});
 
-	DynamicModelGridnavFlight.fromJson(Map<String, dynamic> json) {
-		item2 = json['item2'] != null ? new DynamicModelGridnavFlightItem2.fromJson(json['item2']) : null;
-		item1 = json['item1'] != null ? new DynamicModelGridnavFlightItem1.fromJson(json['item1']) : null;
+	DynamicModelGridnavModel.fromJson(Map<String, dynamic> json) {
+		item2 = json['item2'] != null ? new DynamicModelGridnavCommentModel.fromJson(json['item2']) : null;
+		item1 = json['item1'] != null ? new DynamicModelGridnavCommentModel.fromJson(json['item1']) : null;
 		endColor = json['endColor'];
-		mainItem = json['mainItem'] != null ? new DynamicModelGridnavFlightMainitem.fromJson(json['mainItem']) : null;
-		item4 = json['item4'] != null ? new DynamicModelGridnavFlightItem4.fromJson(json['item4']) : null;
-		item3 = json['item3'] != null ? new DynamicModelGridnavFlightItem3.fromJson(json['item3']) : null;
+		mainItem = json['mainItem'] != null ? new DynamicModelGridnavCommentModel.fromJson(json['mainItem']) : null;
+		item4 = json['item4'] != null ? new DynamicModelGridnavCommentModel.fromJson(json['item4']) : null;
+		item3 = json['item3'] != null ? new DynamicModelGridnavCommentModel.fromJson(json['item3']) : null;
 		startColor = json['startColor'];
 	}
 
@@ -387,430 +387,30 @@ class DynamicModelGridnavFlight {
 		return data;
 	}
 }
-
-class DynamicModelGridnavFlightItem2 {
-	String title;
-	String url;
-
-	DynamicModelGridnavFlightItem2({this.title, this.url});
-
-	DynamicModelGridnavFlightItem2.fromJson(Map<String, dynamic> json) {
-		title = json['title'];
-		url = json['url'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['title'] = this.title;
-		data['url'] = this.url;
-		return data;
-	}
-}
-
-class DynamicModelGridnavFlightItem1 {
+class DynamicModelGridnavCommentModel {
 	String title;
 	String url;
 	bool hideAppBar;
-
-	DynamicModelGridnavFlightItem1({this.title, this.url, this.hideAppBar});
-
-	DynamicModelGridnavFlightItem1.fromJson(Map<String, dynamic> json) {
-		title = json['title'];
-		url = json['url'];
-		hideAppBar = json['hideAppBar'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['title'] = this.title;
-		data['url'] = this.url;
-		data['hideAppBar'] = this.hideAppBar;
-		return data;
-	}
-}
-
-class DynamicModelGridnavFlightMainitem {
-	String icon;
-	String title;
-	String url;
-
-	DynamicModelGridnavFlightMainitem({this.icon, this.title, this.url});
-
-	DynamicModelGridnavFlightMainitem.fromJson(Map<String, dynamic> json) {
-		icon = json['icon'];
-		title = json['title'];
-		url = json['url'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['icon'] = this.icon;
-		data['title'] = this.title;
-		data['url'] = this.url;
-		return data;
-	}
-}
-
-class DynamicModelGridnavFlightItem4 {
-	String title;
-	String url;
-	bool hideAppBar;
-
-	DynamicModelGridnavFlightItem4({this.title, this.url, this.hideAppBar});
-
-	DynamicModelGridnavFlightItem4.fromJson(Map<String, dynamic> json) {
-		title = json['title'];
-		url = json['url'];
-		hideAppBar = json['hideAppBar'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['title'] = this.title;
-		data['url'] = this.url;
-		data['hideAppBar'] = this.hideAppBar;
-		return data;
-	}
-}
-
-class DynamicModelGridnavFlightItem3 {
-	String title;
-	String url;
-	bool hideAppBar;
-
-	DynamicModelGridnavFlightItem3({this.title, this.url, this.hideAppBar});
-
-	DynamicModelGridnavFlightItem3.fromJson(Map<String, dynamic> json) {
-		title = json['title'];
-		url = json['url'];
-		hideAppBar = json['hideAppBar'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['title'] = this.title;
-		data['url'] = this.url;
-		data['hideAppBar'] = this.hideAppBar;
-		return data;
-	}
-}
-
-class DynamicModelGridnavHotel {
-	DynamicModelGridnavHotelItem2 item2;
-	DynamicModelGridnavHotelItem1 item1;
-	String endColor;
-	DynamicModelGridnavHotelMainitem mainItem;
-	DynamicModelGridnavHotelItem4 item4;
-	DynamicModelGridnavHotelItem3 item3;
-	String startColor;
-
-	DynamicModelGridnavHotel({this.item2, this.item1, this.endColor, this.mainItem, this.item4, this.item3, this.startColor});
-
-	DynamicModelGridnavHotel.fromJson(Map<String, dynamic> json) {
-		item2 = json['item2'] != null ? new DynamicModelGridnavHotelItem2.fromJson(json['item2']) : null;
-		item1 = json['item1'] != null ? new DynamicModelGridnavHotelItem1.fromJson(json['item1']) : null;
-		endColor = json['endColor'];
-		mainItem = json['mainItem'] != null ? new DynamicModelGridnavHotelMainitem.fromJson(json['mainItem']) : null;
-		item4 = json['item4'] != null ? new DynamicModelGridnavHotelItem4.fromJson(json['item4']) : null;
-		item3 = json['item3'] != null ? new DynamicModelGridnavHotelItem3.fromJson(json['item3']) : null;
-		startColor = json['startColor'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		if (this.item2 != null) {
-      data['item2'] = this.item2.toJson();
-    }
-		if (this.item1 != null) {
-      data['item1'] = this.item1.toJson();
-    }
-		data['endColor'] = this.endColor;
-		if (this.mainItem != null) {
-      data['mainItem'] = this.mainItem.toJson();
-    }
-		if (this.item4 != null) {
-      data['item4'] = this.item4.toJson();
-    }
-		if (this.item3 != null) {
-      data['item3'] = this.item3.toJson();
-    }
-		data['startColor'] = this.startColor;
-		return data;
-	}
-}
-
-class DynamicModelGridnavHotelItem2 {
-	String title;
-	String url;
-
-	DynamicModelGridnavHotelItem2({this.title, this.url});
-
-	DynamicModelGridnavHotelItem2.fromJson(Map<String, dynamic> json) {
-		title = json['title'];
-		url = json['url'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['title'] = this.title;
-		data['url'] = this.url;
-		return data;
-	}
-}
-
-class DynamicModelGridnavHotelItem1 {
-	String statusBarColor;
-	String title;
-	String url;
-
-	DynamicModelGridnavHotelItem1({this.statusBarColor, this.title, this.url});
-
-	DynamicModelGridnavHotelItem1.fromJson(Map<String, dynamic> json) {
-		statusBarColor = json['statusBarColor'];
-		title = json['title'];
-		url = json['url'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['statusBarColor'] = this.statusBarColor;
-		data['title'] = this.title;
-		data['url'] = this.url;
-		return data;
-	}
-}
-
-class DynamicModelGridnavHotelMainitem {
 	String statusBarColor;
 	String icon;
-	String title;
-	String url;
 
-	DynamicModelGridnavHotelMainitem({this.statusBarColor, this.icon, this.title, this.url});
+	DynamicModelGridnavCommentModel({this.title, this.url, this.hideAppBar,this.statusBarColor,this.icon});
 
-	DynamicModelGridnavHotelMainitem.fromJson(Map<String, dynamic> json) {
+	DynamicModelGridnavCommentModel.fromJson(Map<String, dynamic> json) {
+		title = json['title'];
+		url = json['url'];
+		hideAppBar = json['hideAppBar'];
 		statusBarColor = json['statusBarColor'];
 		icon = json['icon'];
-		title = json['title'];
-		url = json['url'];
 	}
 
 	Map<String, dynamic> toJson() {
 		final Map<String, dynamic> data = new Map<String, dynamic>();
+		data['title'] = this.title;
+		data['url'] = this.url;
+		data['hideAppBar'] = this.hideAppBar;
 		data['statusBarColor'] = this.statusBarColor;
 		data['icon'] = this.icon;
-		data['title'] = this.title;
-		data['url'] = this.url;
-		return data;
-	}
-}
-
-class DynamicModelGridnavHotelItem4 {
-	String title;
-	String url;
-	bool hideAppBar;
-
-	DynamicModelGridnavHotelItem4({this.title, this.url, this.hideAppBar});
-
-	DynamicModelGridnavHotelItem4.fromJson(Map<String, dynamic> json) {
-		title = json['title'];
-		url = json['url'];
-		hideAppBar = json['hideAppBar'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['title'] = this.title;
-		data['url'] = this.url;
-		data['hideAppBar'] = this.hideAppBar;
-		return data;
-	}
-}
-
-class DynamicModelGridnavHotelItem3 {
-	String title;
-	String url;
-	bool hideAppBar;
-
-	DynamicModelGridnavHotelItem3({this.title, this.url, this.hideAppBar});
-
-	DynamicModelGridnavHotelItem3.fromJson(Map<String, dynamic> json) {
-		title = json['title'];
-		url = json['url'];
-		hideAppBar = json['hideAppBar'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['title'] = this.title;
-		data['url'] = this.url;
-		data['hideAppBar'] = this.hideAppBar;
-		return data;
-	}
-}
-
-class DynamicModelGridnavTravel {
-	DynamicModelGridnavTravelItem2 item2;
-	DynamicModelGridnavTravelItem1 item1;
-	String endColor;
-	DynamicModelGridnavTravelMainitem mainItem;
-	DynamicModelGridnavTravelItem4 item4;
-	DynamicModelGridnavTravelItem3 item3;
-	String startColor;
-
-	DynamicModelGridnavTravel({this.item2, this.item1, this.endColor, this.mainItem, this.item4, this.item3, this.startColor});
-
-	DynamicModelGridnavTravel.fromJson(Map<String, dynamic> json) {
-		item2 = json['item2'] != null ? new DynamicModelGridnavTravelItem2.fromJson(json['item2']) : null;
-		item1 = json['item1'] != null ? new DynamicModelGridnavTravelItem1.fromJson(json['item1']) : null;
-		endColor = json['endColor'];
-		mainItem = json['mainItem'] != null ? new DynamicModelGridnavTravelMainitem.fromJson(json['mainItem']) : null;
-		item4 = json['item4'] != null ? new DynamicModelGridnavTravelItem4.fromJson(json['item4']) : null;
-		item3 = json['item3'] != null ? new DynamicModelGridnavTravelItem3.fromJson(json['item3']) : null;
-		startColor = json['startColor'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		if (this.item2 != null) {
-      data['item2'] = this.item2.toJson();
-    }
-		if (this.item1 != null) {
-      data['item1'] = this.item1.toJson();
-    }
-		data['endColor'] = this.endColor;
-		if (this.mainItem != null) {
-      data['mainItem'] = this.mainItem.toJson();
-    }
-		if (this.item4 != null) {
-      data['item4'] = this.item4.toJson();
-    }
-		if (this.item3 != null) {
-      data['item3'] = this.item3.toJson();
-    }
-		data['startColor'] = this.startColor;
-		return data;
-	}
-}
-
-class DynamicModelGridnavTravelItem2 {
-	String statusBarColor;
-	String title;
-	String url;
-	bool hideAppBar;
-
-	DynamicModelGridnavTravelItem2({this.statusBarColor, this.title, this.url, this.hideAppBar});
-
-	DynamicModelGridnavTravelItem2.fromJson(Map<String, dynamic> json) {
-		statusBarColor = json['statusBarColor'];
-		title = json['title'];
-		url = json['url'];
-		hideAppBar = json['hideAppBar'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['statusBarColor'] = this.statusBarColor;
-		data['title'] = this.title;
-		data['url'] = this.url;
-		data['hideAppBar'] = this.hideAppBar;
-		return data;
-	}
-}
-
-class DynamicModelGridnavTravelItem1 {
-	String statusBarColor;
-	String title;
-	String url;
-	bool hideAppBar;
-
-	DynamicModelGridnavTravelItem1({this.statusBarColor, this.title, this.url, this.hideAppBar});
-
-	DynamicModelGridnavTravelItem1.fromJson(Map<String, dynamic> json) {
-		statusBarColor = json['statusBarColor'];
-		title = json['title'];
-		url = json['url'];
-		hideAppBar = json['hideAppBar'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['statusBarColor'] = this.statusBarColor;
-		data['title'] = this.title;
-		data['url'] = this.url;
-		data['hideAppBar'] = this.hideAppBar;
-		return data;
-	}
-}
-
-class DynamicModelGridnavTravelMainitem {
-	String statusBarColor;
-	String icon;
-	String title;
-	String url;
-	bool hideAppBar;
-
-	DynamicModelGridnavTravelMainitem({this.statusBarColor, this.icon, this.title, this.url, this.hideAppBar});
-
-	DynamicModelGridnavTravelMainitem.fromJson(Map<String, dynamic> json) {
-		statusBarColor = json['statusBarColor'];
-		icon = json['icon'];
-		title = json['title'];
-		url = json['url'];
-		hideAppBar = json['hideAppBar'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['statusBarColor'] = this.statusBarColor;
-		data['icon'] = this.icon;
-		data['title'] = this.title;
-		data['url'] = this.url;
-		data['hideAppBar'] = this.hideAppBar;
-		return data;
-	}
-}
-
-class DynamicModelGridnavTravelItem4 {
-	String title;
-	String url;
-	bool hideAppBar;
-
-	DynamicModelGridnavTravelItem4({this.title, this.url, this.hideAppBar});
-
-	DynamicModelGridnavTravelItem4.fromJson(Map<String, dynamic> json) {
-		title = json['title'];
-		url = json['url'];
-		hideAppBar = json['hideAppBar'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['title'] = this.title;
-		data['url'] = this.url;
-		data['hideAppBar'] = this.hideAppBar;
-		return data;
-	}
-}
-
-class DynamicModelGridnavTravelItem3 {
-	String title;
-	String url;
-	bool hideAppBar;
-
-	DynamicModelGridnavTravelItem3({this.title, this.url, this.hideAppBar});
-
-	DynamicModelGridnavTravelItem3.fromJson(Map<String, dynamic> json) {
-		title = json['title'];
-		url = json['url'];
-		hideAppBar = json['hideAppBar'];
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['title'] = this.title;
-		data['url'] = this.url;
-		data['hideAppBar'] = this.hideAppBar;
 		return data;
 	}
 }

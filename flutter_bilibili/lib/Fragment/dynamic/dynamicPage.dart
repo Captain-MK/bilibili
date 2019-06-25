@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bilibili/Fragment/dynamic/model/dynamic_model_entity.dart';
-import 'package:flutter_bilibili/Fragment/dynamic/widget/grid_nav.dart';
+import 'package:flutter_bilibili/Fragment/dynamic/widget/local_nav.dart';
+import 'package:flutter_bilibili/Fragment/dynamic/widget/middle_card.dart';
 import 'package:flutter_bilibili/Fragment/dynamic/widget/web_view.dart';
 import 'package:flutter_bilibili/HttpTool/httpTool.dart';
 import 'package:flutter_bilibili/entity_factory.dart';
@@ -31,7 +32,7 @@ class _dynamicPageState extends State<dynamicPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.black12,
       appBar: AppBar(title: Text('动态'),),
       body: _dynamicModelEntity !=null?ListView(
         children: <Widget>[
@@ -39,9 +40,15 @@ class _dynamicPageState extends State<dynamicPage> {
             print(model.url);
 //            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>WebView(model:model,)));
             Navigator.push(context,
-            MaterialPageRoute(builder: (content)=>WebView(model: model,))
+            MaterialPageRoute(builder: (content)=>WebView(statusBarColor:model.statusBarColor,
+              icon: model.icon,
+              title: model.title,
+              url: model.url,
+              hideAppBar: model.hideAppBar,
+            ))
             );
           },),
+          MiddleCard(gridNavModel: _dynamicModelEntity.gridNav,),
         ],
       ):Container(child: Center(child: CircularProgressIndicator(),),),
     );
