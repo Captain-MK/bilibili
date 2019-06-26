@@ -13,7 +13,6 @@ class _myPageState extends State<myPage> {
   double _NavHeight = 0.0;
   final _scrollController = ScrollController();
   bool _showToTopBtn = false;
-
   var _opacity = 0.0;
 
   var _index = 0;
