@@ -44,7 +44,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage>{
-  var _currentIndex = 2;
+  var _currentIndex = 0;
   final _body = [
     new HomePage(),
     new channelPage(),

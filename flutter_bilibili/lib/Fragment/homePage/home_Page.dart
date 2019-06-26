@@ -105,6 +105,25 @@ class _HomePageState extends State<HomePage>
       appBar: homeAppBar(),
       body: Column(
         children: <Widget>[
+//          Container(
+//            child: Container(
+//              height: 100,
+//              color: Colors.amber,
+//              child: Row(
+//                crossAxisAlignment: CrossAxisAlignment.center,
+//                children: <Widget>[
+//                  ClipOval(
+//                    child: Image.asset('images/user.png',width: 50,height: 50.0,),
+//                  ),
+//                ],
+//              ),
+//            ),
+//          ),
+//          Text('机构地址：江苏省 扬州市 赣江区 解锁夏游网红解锁夏游网红小镇新模式区201'),
+//          Divider(
+//            height: 1.0,
+//            color: Colors.black12,
+//          ),
           homeBody(_tabbarController),
           Divider(
             height: 1.0,
@@ -156,15 +175,15 @@ class _HomePageState extends State<HomePage>
                           itemCount: datas.length,
 //SliverGridDelegateWithFixedCrossAxisCount 构建一个横轴固定数量Widget
                           gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
+                          SliverGridDelegateWithFixedCrossAxisCount(
 //横轴元素个数
-                                  crossAxisCount: 5,
+                              crossAxisCount: 5,
 //纵轴间距
-                                  mainAxisSpacing: 10.0,
+                              mainAxisSpacing: 10.0,
 //横轴间距
-                                  crossAxisSpacing: 10.0,
+                              crossAxisSpacing: 10.0,
 //子组件宽高长度比例
-                                  childAspectRatio: 1.0),
+                              childAspectRatio: 1.0),
                           itemBuilder: (BuildContext context, int index) {
 //Widget Function(BuildContext context, int index)
                             return getItemContainer(datas[index]);
@@ -182,7 +201,7 @@ class _HomePageState extends State<HomePage>
                           Text(
                             '我的关注',
                             style:
-                                TextStyle(fontSize: 17.0, color: Colors.black),
+                            TextStyle(fontSize: 17.0, color: Colors.black),
                           ),
                           SizedBox(
                             width: 20.0,
@@ -218,7 +237,7 @@ class _HomePageState extends State<HomePage>
                           Text(
                             '推荐直播',
                             style:
-                                TextStyle(fontSize: 17.0, color: Colors.black),
+                            TextStyle(fontSize: 17.0, color: Colors.black),
                           ),
                           Expanded(
                             child: Container(),
@@ -247,15 +266,15 @@ class _HomePageState extends State<HomePage>
                           itemCount: datas.length,
 //SliverGridDelegateWithFixedCrossAxisCount 构建一个横轴固定数量Widget
                           gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
+                          SliverGridDelegateWithFixedCrossAxisCount(
 //横轴元素个数
-                                  crossAxisCount: 2,
+                              crossAxisCount: 2,
 //纵轴间距
-                                  mainAxisSpacing: 5.0,
+                              mainAxisSpacing: 5.0,
 //横轴间距
-                                  crossAxisSpacing: 15.0,
+                              crossAxisSpacing: 15.0,
 //子组件宽高长度比例
-                                  childAspectRatio: 1.3),
+                              childAspectRatio: 1.3),
                           itemBuilder: (BuildContext context, int index) {
 //Widget Function(BuildContext context, int index)
                             return getGrideView(datas[index]);
