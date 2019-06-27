@@ -14,7 +14,6 @@ import 'Fragment/dynamic/dynamicPage.dart';
 //void main() => runApp(MyApp());
 void main() async {
   int index = await AppModel().getSaveIndex();
-  print('index==${index}');
   runApp(MyApp(index));
 }
 class MyApp extends StatelessWidget {

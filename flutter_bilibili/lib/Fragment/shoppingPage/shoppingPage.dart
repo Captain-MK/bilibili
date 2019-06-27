@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bilibili/AppModel.dart';
+import 'package:flutter_bilibili/HttpTool/httpTool.dart';
+import '../../entity_factory.dart';
 import '../shoppingPage/changePage.dart';
 import 'dart:async';
 class shoppingPage extends StatefulWidget {

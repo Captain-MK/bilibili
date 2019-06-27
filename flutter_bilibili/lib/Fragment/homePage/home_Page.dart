@@ -44,50 +44,53 @@ class _HomePageState extends State<HomePage>
   }
 
   Widget getGrideView(String item) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Stack(
-          alignment: Alignment.bottomCenter,
-          children: <Widget>[
-            ClipRRect(
-              child: Image.network(
-                  'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3300305952,1328708913&fm=27&gp=0.jpg'),
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    '惩恶',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.person,
-                        color: Colors.white,
-                      ),
-                      Text(
-                        '8.8万',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ],
+    return Container(
+      width: 170,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Stack(
+            alignment: Alignment.bottomCenter,
+            children: <Widget>[
+              ClipRRect(
+                child: Image.network(
+                    'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3300305952,1328708913&fm=27&gp=0.jpg',fit: BoxFit.fill,height: 110,),
+                borderRadius: BorderRadius.circular(10.0),
               ),
-            )
-          ],
-        ),
-        Text('英雄联盟$item'),
-        Text(
-          'desc$item',
-          style: TextStyle(fontSize: 11.0, color: Colors.black26),
-        ),
-      ],
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      '惩恶',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Icon(
+                          Icons.person,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          '8.8万',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+          Text('英雄联盟$item'),
+          Text(
+            'desc$item',
+            style: TextStyle(fontSize: 11.0, color: Colors.black26),
+          ),
+        ],
+      ),
     );
   }
   @override
@@ -97,7 +100,12 @@ class _HomePageState extends State<HomePage>
     _textFieldController = TextEditingController();
     _tabbarController = TabController(length: 5, vsync: this);
   }
-
+  cardWidget() {
+    List<Widget> list = getDataList().map((value){
+      return getGrideView(value);
+    }).toList();
+    return Wrap(spacing: 20,children: list,);
+  }
   @override
   Widget build(BuildContext context) {
     List<String> datas = getDataList();
@@ -257,28 +265,12 @@ class _HomePageState extends State<HomePage>
                         ],
                       ),
                     ), //推荐直播
-                    Container(
-                      height: 680,
-                      margin: EdgeInsets.only(left: 15.0, right: 15.0),
-                      child: GridView.builder(
-                          physics: new NeverScrollableScrollPhysics(),
-                          //屏蔽GridView内部滚动
-                          itemCount: datas.length,
-//SliverGridDelegateWithFixedCrossAxisCount 构建一个横轴固定数量Widget
-                          gridDelegate:
-                          SliverGridDelegateWithFixedCrossAxisCount(
-//横轴元素个数
-                              crossAxisCount: 2,
-//纵轴间距
-                              mainAxisSpacing: 5.0,
-//横轴间距
-                              crossAxisSpacing: 15.0,
-//子组件宽高长度比例
-                              childAspectRatio: 1.3),
-                          itemBuilder: (BuildContext context, int index) {
-//Widget Function(BuildContext context, int index)
-                            return getGrideView(datas[index]);
-                          }),
+                    Column(
+                      children: <Widget>[
+                        Text('开始'),
+                        cardWidget(),
+                        Text('结束'),
+                      ],
                     ),
 
                     Divider(
@@ -314,6 +306,15 @@ class _HomePageState extends State<HomePage>
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    GestureDetector(
+                      onTap: (){
+
+                      },
+                      child: Container(
+                        color: Colors.amber,
+                        child: Image.network('http://www.devio.org/io/flutter_app/img/banner/100h10000000q7ght9352.jpg',width: 100,height: 100,),
+                      ),
+                    ),
                   ],
                 ),
               ],
@@ -324,3 +325,28 @@ class _HomePageState extends State<HomePage>
     );
   }
 }
+
+
+//Container(
+//height: 680,
+//margin: EdgeInsets.only(left: 15.0, right: 15.0),
+//child: GridView.builder(
+//physics: new NeverScrollableScrollPhysics(),
+////屏蔽GridView内部滚动
+//itemCount: datas.length,
+////SliverGridDelegateWithFixedCrossAxisCount 构建一个横轴固定数量Widget
+//gridDelegate:
+//SliverGridDelegateWithFixedCrossAxisCount(
+////横轴元素个数
+//crossAxisCount: 2,
+////纵轴间距
+//mainAxisSpacing: 5.0,
+////横轴间距
+//crossAxisSpacing: 15.0,
+////子组件宽高长度比例
+//childAspectRatio: 1.3),
+//itemBuilder: (BuildContext context, int index) {
+////Widget Function(BuildContext context, int index)
+//return getGrideView(datas[index]);
+//}),
+//),//Gridevierw
