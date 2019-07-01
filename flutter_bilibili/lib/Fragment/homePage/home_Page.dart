@@ -294,9 +294,7 @@ class _HomePageState extends State<HomePage>
                     ),
                   ],
                 ),
-                Center(
-                  child: Icon(Icons.add,size: 100.0,color: Colors.red,),
-                ),
+                carPages(),
                 Center(
                   child: Icon(Icons.add,size: 100.0,color: Colors.orangeAccent,),
                 ),
@@ -324,6 +322,30 @@ class _HomePageState extends State<HomePage>
       ),
     );
   }
+}
+
+class carPages extends StatefulWidget {
+  @override
+  _carPagesState createState() => _carPagesState();
+}
+//TODO:保持状态
+class _carPagesState extends State<carPages> with AutomaticKeepAliveClientMixin{
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: 20,
+        itemBuilder: (c,i){
+          return ListTile(
+            leading: Icon(Icons.ac_unit),
+            title: Text('数字${i}'),
+          );
+        }
+    );
+  }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
 
 

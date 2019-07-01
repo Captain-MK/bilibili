@@ -49,7 +49,7 @@ class _channelPageState extends State<channelPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('频道'),),
-      body: SmartRefresher(
+      body: Scrollbar(child: SmartRefresher(
         enablePullDown: true,
         enablePullUp: true,
         header: WaterDropHeader(),//defaultTargetPlatform == TargetPlatform.iOS?WaterDropHeader():WaterDropMaterialHeader(),
@@ -102,7 +102,7 @@ class _channelPageState extends State<channelPage> {
               );
             }
         ):Center(child: Text('暂无数据'),),
-      ),
+      )),//Scrollbar显示滚动条
     );
   }
 }

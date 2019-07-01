@@ -65,7 +65,14 @@ class _shoppingPageState extends State<shoppingPage> {
               ),
             ),
             RichText(text: TextSpan(text: '我爱你',style: TextStyle(color: Colors.red),children: [TextSpan(text: '我爱你',style: TextStyle(color: Colors.greenAccent)),])),
-            RotatedBox(quarterTurns: 1,child: Text('hello world'),),
+//            RotatedBox(quarterTurns: 1,child: Text('hello world'),),
+            Container(
+              color: Colors.grey,
+              width: 50,
+              height: 50,
+              transform: Matrix4.rotationZ(0.8),
+              child: Center(child: Text('哈哈'),),
+            ),
 
           ],
         ),
