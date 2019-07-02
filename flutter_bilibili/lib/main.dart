@@ -4,6 +4,7 @@ import 'package:flutter_bilibili/Fragment/channelPage/channelPage.dart';
 import 'package:flutter_bilibili/Fragment/homePage/home_Page.dart';
 import 'package:flutter_bilibili/Fragment/my_Page.dart';
 import 'package:flutter_bilibili/Fragment/shoppingPage/shoppingPage.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -63,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage>{
   }
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
     return Scaffold(
       body: IndexedStack(children: _body,index: _currentIndex,),//IndexedStack可以保持页面状态。。。。。2.不适合这个页面AutomaticKeepAliveClientMixin也可以
       bottomNavigationBar: Theme(//或者使用Scaffold的bottomSheet: ,属性
@@ -75,15 +77,15 @@ class _MyHomePageState extends State<MyHomePage>{
           items: [
             BottomNavigationBarItem(title: Text('首页'), icon: Icon(Icons.home)),
             BottomNavigationBarItem(
-              title: Text('频道'),
+              title: Text('圈子'),
               icon: Icon(Icons.live_tv),
             ),
             BottomNavigationBarItem(
-              title: Text('动态'),
+              title: Text('逛一逛'),
               icon: Icon(Icons.move_to_inbox),
             ),
             BottomNavigationBarItem(
-              title: Text('会员购'),
+              title: Text('族人圈'),
               icon: Icon(Icons.shopping_cart),
             ),
             BottomNavigationBarItem(
