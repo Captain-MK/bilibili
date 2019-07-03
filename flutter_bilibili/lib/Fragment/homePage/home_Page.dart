@@ -333,7 +333,7 @@ class _carPagesState extends State<carPages> with AutomaticKeepAliveClientMixin{
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 20,
+        itemCount: 2000,
         itemBuilder: (c,i){
           return ListTile(
             leading: Icon(Icons.ac_unit),

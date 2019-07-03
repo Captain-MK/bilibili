@@ -4,6 +4,9 @@ import 'package:flutter_bilibili/HttpTool/httpTool.dart';
 import '../../entity_factory.dart';
 import '../shoppingPage/changePage.dart';
 import 'dart:async';
+
+import 'package:chewie/chewie.dart';
+import 'package:video_player/video_player.dart';
 class shoppingPage extends StatefulWidget {
   @override
   _shoppingPageState createState() => _shoppingPageState();
@@ -12,8 +15,8 @@ class shoppingPage extends StatefulWidget {
 class _shoppingPageState extends State<shoppingPage> {
   bool _switch = false;
   double _slider = 0.3;
-
-
+  VideoPlayerController _videoPlayerController;
+  ChewieController _chewieController;
 
   int _index=0;
   void getindex ()async{
@@ -24,6 +27,21 @@ class _shoppingPageState extends State<shoppingPage> {
     // TODO: implement initState
     super.initState();
     getindex();
+    _videoPlayerController = VideoPlayerController.network('https://media.w3.org/2010/05/sintel/trailer.mp4');
+    _chewieController = ChewieController(
+      videoPlayerController: _videoPlayerController,
+      aspectRatio: 3/2,
+      autoPlay: true,
+      placeholder: Image.asset('images/teacher.png',fit: BoxFit.fill,),
+      looping: true,
+    );
+  }
+  @override
+  void dispose() {
+    _videoPlayerController.dispose();
+    _chewieController.dispose();
+    // TODO: implement dispose
+    super.dispose();
   }
   @override
   Widget build(BuildContext context) {
@@ -35,6 +53,9 @@ class _shoppingPageState extends State<shoppingPage> {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Chewie(
+              controller: _chewieController,
+            ),
             RaisedButton(
               child: Text('主题颜色',style: TextStyle(fontSize: 20.0)),
               color: themeList[model.themeIndex != 0?model.themeIndex:_index],

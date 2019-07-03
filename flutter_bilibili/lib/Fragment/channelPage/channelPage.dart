@@ -57,7 +57,7 @@ class _channelPageState extends State<channelPage> with SingleTickerProviderStat
           width: 150,
           child: TabBar(
             indicatorSize: TabBarIndicatorSize.label,
-            tabs: [Text('关注'),Text('推荐')],
+            tabs: [Text('关注',style: TextStyle(fontSize: 20),),Text('推荐',style: TextStyle(fontSize: 20),)],
             controller: _tabbarController,
           ),
         ),

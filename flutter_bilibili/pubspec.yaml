@@ -31,6 +31,7 @@ dependencies:
   fluttertoast: ^3.1.0
   pull_to_refresh: ^1.4.5
   flutter_webview_plugin: ^0.3+2
+  chewie: ^0.9.6
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +55,7 @@ flutter:
    - images/bj.png
    - images/相机.png
    - images/小红花.png
+   - images/teacher.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

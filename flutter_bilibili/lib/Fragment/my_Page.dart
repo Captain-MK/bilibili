@@ -41,7 +41,33 @@ class _myPageState extends State<myPage> {
     getindex();
     print('第一次调用'); //setSatae不会重复调用initState（）、、、、build会调用
   }
-
+  _items(){
+    List<Widget> _list = [];
+    for (int i = 0;i<5;i++){
+      Widget a = PhysicalModel(
+                              color: Colors.transparent,
+                              borderRadius: BorderRadius.circular(15.0),
+                              clipBehavior: Clip.antiAlias,
+                              child: GestureDetector(
+                                child: Image.network(
+                                    'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3302790822,2591684234&fm=27&gp=0.jpg',
+                                    fit: BoxFit.fill,width: 120,height: 80,),
+                                onTap: () {
+                                  Fluttertoast.showToast(
+                                      msg: "图片",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.CENTER,
+                                      timeInSecForIos: 1,
+                                      backgroundColor: Colors.black38,
+                                      textColor: Colors.white,
+                                      fontSize: 13.0);
+                                },
+                              ),
+                            );
+      _list.add(a);
+    }
+    return _list;
+  }
   Widget itemWidget(int index) {
     if (index == 0) {
       return Container(
@@ -149,6 +175,13 @@ class _myPageState extends State<myPage> {
               SizedBox(
                 height: 5.0,
               ),
+//              index %2 ==0 ?
+//              Wrap(
+//                direction: Axis.horizontal,
+//                children: _items(),
+//                spacing: 10,
+//                runSpacing: 5,
+//              ):Container(),
               index % 2 == 0
                   ? Container(
                       height: ((MediaQuery.of(context).size.width-50)/3-0.5)*3+30,
@@ -162,25 +195,23 @@ class _myPageState extends State<myPage> {
                           physics: new NeverScrollableScrollPhysics(),
                           itemCount: 9,
                           itemBuilder: (c, index) {
-                            return PhysicalModel(
-                              color: Colors.transparent,
-                              borderRadius: BorderRadius.circular(15.0),
-                              clipBehavior: Clip.antiAlias,
-                              child: GestureDetector(
+                            return GestureDetector(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(15.0),
                                 child: Image.network(
                                     index%2==0?'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3409605815,553104213&fm=26&gp=0.jpg':'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3302790822,2591684234&fm=27&gp=0.jpg',
                                     fit: BoxFit.fill),
-                                onTap: () {
-                                  Fluttertoast.showToast(
-                                      msg: "图片${index}",
-                                      toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.CENTER,
-                                      timeInSecForIos: 1,
-                                      backgroundColor: Colors.black38,
-                                      textColor: Colors.white,
-                                      fontSize: 13.0);
-                                },
                               ),
+                              onTap: () {
+                                Fluttertoast.showToast(
+                                    msg: "图片${index}",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.CENTER,
+                                    timeInSecForIos: 1,
+                                    backgroundColor: Colors.black38,
+                                    textColor: Colors.white,
+                                    fontSize: 13.0);
+                              },
                             );
                           }),
                     )
