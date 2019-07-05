@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bilibili/Fragment/channelPage/news_entity.dart';
+import 'package:flutter_bilibili/Fragment/pagesView/pagesViewPage.dart';
 import 'package:flutter_bilibili/HttpTool/httpTool.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -366,69 +367,104 @@ class _hotCircleState extends State<hotCircle> with AutomaticKeepAliveClientMixi
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
-                        Container(
-                          width: 60,
-                          child: Column(
-                            children: <Widget>[
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image.asset('images/user.png',width: 39,height: 39,),
-                              ),
-                              Text('雨中渔童'),
-                              Text('钢琴大咖',style: TextStyle(color: Colors.black26),),
-                            ],
+                        InkWell(
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (content){
+                              return PagesViewPage();
+                            }));
+                          },
+                          child: Container(
+                            width: 60,
+                            child: Column(
+                              children: <Widget>[
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image.asset('images/user.png',width: 39,height: 39,),
+                                ),
+                                Text('雨中渔童'),
+                                Text('钢琴大咖',style: TextStyle(color: Colors.black26),),
+                              ],
+                            ),
                           ),
                         ),
-                        Container(
-                          width: 60,
-                          child: Column(
-                            children: <Widget>[
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image.asset('images/user.png',width: 39,height: 39,),
-                              ),
-                              Text('雨中渔童'),
-                              Text('钢琴大咖',style: TextStyle(color: Colors.black26),),
-                            ],
+                        InkWell(
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (content){
+                              return PagesViewPage();
+                            }));
+                          },
+                          child: Container(
+                            width: 60,
+                            child: Column(
+                              children: <Widget>[
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image.asset('images/user.png',width: 39,height: 39,),
+                                ),
+                                Text('雨中渔童'),
+                                Text('钢琴大咖',style: TextStyle(color: Colors.black26),),
+                              ],
+                            ),
                           ),
                         ),
-                        Container(
-                          width: 60,
-                          child: Column(
-                            children: <Widget>[
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image.asset('images/user.png',width: 39,height: 39,),
-                              ),
-                              Text('雨中渔童'),
-                              Text('钢琴大咖',style: TextStyle(color: Colors.black26),),
-                            ],
+                        InkWell(
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (content){
+                              return PagesViewPage();
+                            }));
+                          },
+                          child: Container(
+                            width: 60,
+                            child: Column(
+                              children: <Widget>[
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image.asset('images/user.png',width: 39,height: 39,),
+                                ),
+                                Text('雨中渔童'),
+                                Text('钢琴大咖',style: TextStyle(color: Colors.black26),),
+                              ],
+                            ),
                           ),
                         ),
-                        Container(
-                          width: 60,
-                          child: Column(
-                            children: <Widget>[
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image.asset('images/user.png',width: 39,height: 39,),
-                              ),
-                              Text('雨中渔童'),
-                              Text('钢琴大咖',style: TextStyle(color: Colors.black26),),
-                            ],
+                        InkWell(
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (content){
+                              return PagesViewPage();
+                            }));
+                          },
+                          child: Container(
+                            width: 60,
+                            child: Column(
+                              children: <Widget>[
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image.asset('images/user.png',width: 39,height: 39,),
+                                ),
+                                Text('雨中渔童'),
+                                Text('钢琴大咖',style: TextStyle(color: Colors.black26),),
+                              ],
+                            ),
                           ),
                         ),
-                        Container(
-                          width: 60,
-                          child: Column(
-                            children: <Widget>[
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image.asset('images/user.png',width: 39,height: 39,),
-                              ),
-                              Text('雨中渔童'),
-                              Text('钢琴大咖',style: TextStyle(color: Colors.black26),),
-                            ],
+                        InkWell(
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (content){
+                              return PagesViewPage();
+                            }));
+                          },
+                          child: Container(
+                            width: 60,
+                            child: Column(
+                              children: <Widget>[
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image.asset('images/user.png',width: 39,height: 39,),
+                                ),
+                                Text('雨中渔童'),
+                                Text('钢琴大咖',style: TextStyle(color: Colors.black26),),
+                              ],
+                            ),
                           ),
                         ),
                       ],

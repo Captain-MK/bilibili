@@ -11,7 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 
 import 'Fragment/dynamic/dynamicPage.dart';
-
+import 'dart:ui';
 //void main() => runApp(MyApp());
 void main() async {
   int index = await AppModel().getSaveIndex();
@@ -64,7 +64,27 @@ class _MyHomePageState extends State<MyHomePage>{
   }
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
+    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334,allowFontScaling: true)..init(context);
+//
+//    print(MediaQuery.of(context).size);
+//    var t = MediaQuery.of(context).padding.top;
+//    print('t: $t');
+//
+//    var s = ScreenUtil.statusBarHeight;
+//    print('s: $s');
+//
+//    var wx = window.physicalSize;
+//    print('wx: $wx');
+//
+//    var wp = window.padding;
+//    print('wp: $wp');
+//
+//    var ss = window.devicePixelRatio;
+//    print('ss: $ss');
+//
+//    var su = ScreenUtil.pixelRatio;
+//    print('su: $su');
+//    print(ScreenUtil.screenHeight);
     return Scaffold(
       body: IndexedStack(children: _body,index: _currentIndex,),//IndexedStack可以保持页面状态。。。。。2.不适合这个页面AutomaticKeepAliveClientMixin也可以
       bottomNavigationBar: Theme(//或者使用Scaffold的bottomSheet: ,属性

@@ -315,8 +315,8 @@ class _myPageState extends State<myPage> {
   @override
   Widget build(BuildContext context) {
 //    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
-//    _NavHeight = ScreenUtil.statusBarHeight;
-    _NavHeight = tool(context).navHeight;
+    _NavHeight = MediaQuery.of(context).padding.top+44;
+//    _NavHeight = tool(context).navHeight;
     final model = AppModel.of(context);
     _themeColor = themeList[model.themeIndex != 0 ? model.themeIndex : _index];
     return Scaffold(
@@ -394,7 +394,7 @@ class tool extends ScreenUtil {
   }
 
   tool(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil(width: 1080, height: 1920)..init(context);
+//    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
   }
 
 //  set userName (value){ //set方法，必须有参数，需要赋值
