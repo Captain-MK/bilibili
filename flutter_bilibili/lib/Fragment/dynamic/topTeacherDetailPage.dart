@@ -43,7 +43,7 @@ class demo2 extends StatelessWidget {
                           color: Colors.white,
                           child: Stack(
                             children: <Widget>[
-                              Image.network('http://img0.pcgames.com.cn/pcgames/1306/09/2847015_Lee_Sin_DragonFistSkin_Ch_thumb.jpg', fit: BoxFit.cover,width: MediaQuery.of(context).size.width,height: 120,),
+                              FadeInImage.assetNetwork(placeholder: 'images/bj.png', image: 'http://img0.pcgames.com.cn/pcgames/1306/09/2847015_Lee_Sin_DragonFistSkin_Ch_thumb.jpg', fit: BoxFit.cover,width: MediaQuery.of(context).size.width,height: 120,),
                               Positioned(
                                 left: 15,
                                 top: 90,
