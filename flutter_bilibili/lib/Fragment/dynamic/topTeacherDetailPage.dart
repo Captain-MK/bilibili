@@ -13,7 +13,7 @@ class _teacherDetailPageState extends State<teacherDetailPage> {
 }
 
 class demo2 extends StatelessWidget {
-  final _tabs = <String>['主页', '问答'];
+  final _tabs = <String>['主页10', '课程20','活动30','老师10'];
   final colors = <Color>[
     Colors.red,
     Colors.green,
@@ -26,76 +26,71 @@ class demo2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      appBar: AppBar(
-//        title: Text('音乐小屋'),
-//        actions: <Widget>[
-//          IconButton(icon: Icon(Icons.menu), onPressed: (){
-//            print('菜单');
-//          }),
-//        ],
-//      ),
       body: DefaultTabController(
           length: _tabs.length,
           child: NestedScrollView(
               headerSliverBuilder: (context, innerScrolled) => <Widget>[
-//                SliverToBoxAdapter(
-//                  child: Container(
-//                    color: Colors.white,
-//                    child: Column(
-//                      children: <Widget>[
-//                        Container(height: 80,color: Colors.amber,),
-//                        Container(
-//                          height: 45,
-//                          child: TabBar(
-//                            labelColor: Colors.red,
-//                            unselectedLabelColor: Colors.grey,
-//                            indicatorColor: Colors.red,
-//                            indicatorSize: TabBarIndicatorSize.label,
-//                              tabs: _tabs.map((tab) => Text(tab, style: TextStyle(fontSize: 16.0))).toList(),
-//                          ),
-//                        ),
-//                        Divider(height: 2.0,color: Colors.black12,)
-//                      ],
-//                    ),
-//                  ),
-//                ), //将非Sliver组件封装成Sliver组件
                 SliverOverlapAbsorber(
                   // 传入 handle 值，直接通过 `sliverOverlapAbsorberHandleFor` 获取即可
                   handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                   child: SliverAppBar(
                     pinned: true,
-                    title: Text('NestedScroll Demo'),
-                    expandedHeight: 200.0,// 展开的高度
-//                    flexibleSpace:FractionallySizedBox(
-//                      widthFactor: 1,
-//                      child: Container(
-//                        color: Colors.red,
-//                        child: Container(
-//                          height: 20,
-//                          width: 40,
-//                          color: Colors.green,
-//                        ),
-//                      ),
-//                    ),
+                    title: Text('会员机构'),
+                    elevation: 0.0,
+                    expandedHeight: 255,// 展开的高度
                     flexibleSpace: FlexibleSpaceBar(
-                        background: Image.asset('images/bj.png', fit: BoxFit.cover),
-//                      title: Container(
-//                          height: 45,
-//                      padding: EdgeInsets.symmetric(horizontal: 100),
-//                          child: TabBar(
-//                            labelColor: Colors.red,
-//                            unselectedLabelColor: Colors.grey,
-//                            indicatorColor: Colors.red,
-//                            indicatorSize: TabBarIndicatorSize.label,
-//                              tabs: _tabs.map((tab) => Text(tab, style: TextStyle(fontSize: 16.0))).toList(),
-//                          ),
-//                        ),
+                        background: Container(
+                          color: Colors.white,
+                          child: Stack(
+                            children: <Widget>[
+                              Image.network('http://img0.pcgames.com.cn/pcgames/1306/09/2847015_Lee_Sin_DragonFistSkin_Ch_thumb.jpg', fit: BoxFit.cover,width: MediaQuery.of(context).size.width,height: 120,),
+                              Positioned(
+                                left: 15,
+                                top: 90,
+                                child: Row(
+                                  children: <Widget>[
+                                    ClipRRect(child: FadeInImage.assetNetwork(placeholder: 'images/user.png', image: 'http://b-ssl.duitang.com/uploads/item/201704/30/20170430194407_JtvXr.thumb.224_0.jpeg',width: 60,height: 60,),borderRadius: BorderRadius.circular(30),),
+                                    SizedBox(width: 15.0,),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text('扬州小鱼儿咨询有限供货商',style: TextStyle(color: Colors.white,fontSize: 14),),
+                                        SizedBox(width: 10.0,),
+                                        Container(
+                                          padding: EdgeInsets.symmetric(horizontal: 4.0),
+                                          decoration: BoxDecoration(
+                                            color: Colors.orange,
+                                            borderRadius: BorderRadius.circular(5),
+                                          ),
+                                          child: Text('会员中心机构',style: TextStyle(color: Colors.white,fontSize: 12),),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Positioned(
+                                top: 150,
+                                left: 10,
+                                right: 10,
+                                bottom: 44.0,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text('介绍：授课模式包括1对1辅导、个性化小组辅导、艺考文化课辅导等。总部坐落于扬州，自2001年创立至今，历经十八年的发展。',maxLines: 3,style: TextStyle(color: Colors.black,fontSize: 15)),
+                                    Text('年限 20年  .  学生 2000  .  年龄段 1~3 岁',maxLines: 1,style: TextStyle(color: Colors.red,fontSize: 12),),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                     ),
-                    bottom: TabBar(tabs: _tabs.map((tab) => Text(tab, style: TextStyle(fontSize: 18.0))).toList()),
+                    bottom: asd(_tabs),
                     forceElevated: innerScrolled,// 是否显示层次感
                   ),
                 ),
-                  ],
+              ],
               body: TabBarView(
                   children: _tabs
                       // 这边需要通过 Builder 来创建 TabBarView 的内容，否则会报错
@@ -155,7 +150,9 @@ class demo2 extends StatelessWidget {
                                   ],
                                 ),
                           ))
-                      .toList()))),
+                      .toList()),
+          ),
+      ),
     );
   }
 }
@@ -196,6 +193,18 @@ class demo1 extends StatelessWidget {
               collapseMode: CollapseMode.parallax,
               background: Image.asset('images/bj.png', fit: BoxFit.cover),
             ),
+
+//                      title: Container(
+//                          height: 45,
+//                      padding: EdgeInsets.symmetric(horizontal: 100),
+//                          child: TabBar(
+//                            labelColor: Colors.red,
+//                            unselectedLabelColor: Colors.grey,
+//                            indicatorColor: Colors.red,
+//                            indicatorSize: TabBarIndicatorSize.label,
+//                              tabs: _tabs.map((tab) => Text(tab, style: TextStyle(fontSize: 16.0))).toList(),
+//                          ),
+//                        ),
           ),
           SliverPersistentHeader(
             delegate: DemoHeader(),
@@ -256,4 +265,31 @@ class DemoHeader extends SliverPersistentHeaderDelegate {
   @override
   bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) =>
       false; // 因为所有的内容都是固定的，所以不需要更新
+}
+
+class asd extends PreferredSize{
+  final List<String> _tabs;
+  asd(this._tabs);
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Column(
+      children: <Widget>[
+        Divider(height: 1.0,color: Colors.black12,),
+        Container(
+          height: 39,
+          color: Colors.white,
+          child: TabBar(
+            tabs: _tabs.map((tab) => Text(tab, style: TextStyle(fontSize: 14.0,color: Colors.black38))).toList(),
+            indicatorSize: TabBarIndicatorSize.label,
+            indicatorColor: Colors.orange,
+          ),
+        )
+      ],
+    );
+  }
+  @override
+  Size get preferredSize {
+    return Size.fromHeight(40);
+  }
 }

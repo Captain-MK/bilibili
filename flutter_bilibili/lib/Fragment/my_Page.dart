@@ -10,7 +10,6 @@ class myPage extends StatefulWidget {
 }
 
 class _myPageState extends State<myPage> {
-  double _NavHeight = 0.0;
   final _scrollController = ScrollController();
   bool _showToTopBtn = false;
   var _opacity = 0.0;
@@ -71,7 +70,7 @@ class _myPageState extends State<myPage> {
   Widget itemWidget(int index) {
     if (index == 0) {
       return Container(
-          height: _NavHeight,
+          height: MediaQuery.of(context).padding.top+44,
           child: Stack(
             alignment: AlignmentDirectional.center,
             children: <Widget>[
@@ -297,7 +296,7 @@ class _myPageState extends State<myPage> {
   }
 
   void _onScroller(int i) {
-    var aa = i / _NavHeight;
+    var aa = i / (MediaQuery.of(context).padding.top+44);
     if (aa >= 1.0) {
       aa = 1.0;
     } else if (aa <= 0.0) {
@@ -314,9 +313,6 @@ class _myPageState extends State<myPage> {
   }
   @override
   Widget build(BuildContext context) {
-//    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
-    _NavHeight = MediaQuery.of(context).padding.top+44;
-//    _NavHeight = tool(context).navHeight;
     final model = AppModel.of(context);
     _themeColor = themeList[model.themeIndex != 0 ? model.themeIndex : _index];
     return Scaffold(
@@ -339,28 +335,39 @@ class _myPageState extends State<myPage> {
               ),
             ),
           ),
-          Opacity(
-            opacity: _opacity,
-            child: Container(
-              height: _NavHeight,
-              color: _themeColor,
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
-                      child: Text(
-                        '我的页面',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18.0),
-                      ),
-                    ),
-                  ],
+          Positioned( //Place it at the top, and not use the entire screen
+            top: 0.0,
+            left: 0.0,
+            right: 0.0,
+            child: Opacity(
+              opacity: _opacity,
+              child: AppBar(
+                title: Text('我的'),
+                centerTitle: true,
+                brightness: Brightness.light,
+                iconTheme: IconThemeData(
+                  color: Colors.black, //change your color here
                 ),
+                elevation: 0.0,
               ),
             ),
           ),
+//          Opacity(
+//            opacity: _opacity,
+//            child: Container(
+//              padding: EdgeInsets.only(left: 0,right: 0,top: 0),
+////              height: _NavHeight,
+//              color: _themeColor,
+//              child: AppBar(
+//                title: Text('我的页面'),
+//                centerTitle: true,
+//                brightness: Brightness.light,
+//                iconTheme: IconThemeData(
+//                  color: Colors.black, //change your color here
+//                ),
+//              ),
+//            ),
+//          ),
         ],
       ),
       floatingActionButton: !_showToTopBtn ? null : FloatingActionButton(
