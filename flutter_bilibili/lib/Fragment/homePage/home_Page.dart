@@ -295,8 +295,23 @@ class _HomePageState extends State<HomePage>
                   ],
                 ),
                 carPages(),
-                Center(
-                  child: Icon(Icons.add,size: 100.0,color: Colors.orangeAccent,),
+                InkWell(
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (content)=>Second()));
+                  },
+                  child: Center(
+                    child: Hero(
+                      tag: "same",
+                      transitionOnUserGestures: true,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Text('我爱你',style: TextStyle(fontSize: 12,color: Colors.red),),
+                      ),
+                      flightShuttleBuilder: (a,b,c,d,e){
+                        return Text('我爱你',style: TextStyle(fontSize: 15,color: Colors.amber),);
+                      },
+                    ),
+                  ),
                 ),
                 Center(
                   child: Icon(Icons.add,size: 100.0,),
@@ -349,26 +364,29 @@ class _carPagesState extends State<carPages> with AutomaticKeepAliveClientMixin{
 }
 
 
-//Container(
-//height: 680,
-//margin: EdgeInsets.only(left: 15.0, right: 15.0),
-//child: GridView.builder(
-//physics: new NeverScrollableScrollPhysics(),
-////屏蔽GridView内部滚动
-//itemCount: datas.length,
-////SliverGridDelegateWithFixedCrossAxisCount 构建一个横轴固定数量Widget
-//gridDelegate:
-//SliverGridDelegateWithFixedCrossAxisCount(
-////横轴元素个数
-//crossAxisCount: 2,
-////纵轴间距
-//mainAxisSpacing: 5.0,
-////横轴间距
-//crossAxisSpacing: 15.0,
-////子组件宽高长度比例
-//childAspectRatio: 1.3),
-//itemBuilder: (BuildContext context, int index) {
-////Widget Function(BuildContext context, int index)
-//return getGrideView(datas[index]);
-//}),
-//),//Gridevierw
+
+class Second extends StatefulWidget {
+  @override
+  _SecondState createState() => _SecondState();
+}
+
+class _SecondState extends State<Second> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('第二个页面'),
+        ),
+        body: Container(
+          child: Hero(
+            tag: "same",
+            transitionOnUserGestures: true,
+            child: Text('我爱你',style: TextStyle(fontSize: 20,color: Colors.red),),
+            flightShuttleBuilder: (a,b,c,d,e){
+              return Text('我爱你',style: TextStyle(fontSize: 15,color: Colors.amber),);
+            },
+          ),
+        )
+    );
+  }
+}

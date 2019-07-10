@@ -205,8 +205,11 @@ class topTeacher extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        ClipRRect(child: Image.network('https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=557042106,3557535940&fm=11&gp=0.jpg',
-                          width: 110,height: 110,fit: BoxFit.fill,),borderRadius: BorderRadius.circular(8.0),),
+                        Hero(tag: 'hashiqi',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(child: Image.network('https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=557042106,3557535940&fm=11&gp=0.jpg',
+                          width: 110,height: 110,fit: BoxFit.fill,),borderRadius: BorderRadius.circular(8.0),),),
+
                         SizedBox(width: 10.0,),
                         Expanded(
                           child: Column(

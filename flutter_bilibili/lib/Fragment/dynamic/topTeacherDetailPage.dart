@@ -49,7 +49,12 @@ class demo2 extends StatelessWidget {
                                 top: 90,
                                 child: Row(
                                   children: <Widget>[
-                                    ClipRRect(child: FadeInImage.assetNetwork(placeholder: 'images/user.png', image: 'http://b-ssl.duitang.com/uploads/item/201704/30/20170430194407_JtvXr.thumb.224_0.jpeg',width: 60,height: 60,),borderRadius: BorderRadius.circular(30),),
+                                    Hero(tag: 'hashiqi',
+                                      transitionOnUserGestures: true,
+                                      child: ClipRRect(child: FadeInImage.assetNetwork(placeholder: 'images/user.png',
+                                      image: 'http://b-ssl.duitang.com/uploads/item/201704/30/20170430194407_JtvXr.thumb.224_0.jpeg',
+                                      width: 60,height: 60,),borderRadius: BorderRadius.circular(30),),),
+
                                     SizedBox(width: 15.0,),
                                     Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,

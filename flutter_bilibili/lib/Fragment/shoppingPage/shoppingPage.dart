@@ -31,7 +31,7 @@ class _shoppingPageState extends State<shoppingPage> {
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController,
       aspectRatio: 3/2,
-      autoPlay: true,
+      autoPlay: false,
       placeholder: Image.asset('images/teacher.png',fit: BoxFit.fill,),
       looping: true,
     );
@@ -94,6 +94,23 @@ class _shoppingPageState extends State<shoppingPage> {
               transform: Matrix4.rotationZ(0.8),
               child: Center(child: Text('哈哈'),),
             ),
+            ChoiceChip(
+              label: Text('我爱你'),
+              selectedColor: Colors.amber,
+              disabledColor: Colors.grey,
+              selected: true,
+              onSelected: (value){
+                setState(() {
+
+                });
+              },
+            ),
+            Transform.scale(
+                scale: 0.8,
+              child: Container(height: 50,width: 50,color: Colors.amber,),
+            )
+
+
 
           ],
         ),

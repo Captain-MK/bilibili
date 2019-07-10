@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
               title: 'Flutter Demo',
               theme: ThemeData(primarySwatch: themeList[model.themeIndex != 0?model.themeIndex:index],),
               home: MyHomePage(title: 'Flutter Demo Home Page'),
+              debugShowCheckedModeBanner: false,
             );
           })
       );
@@ -51,6 +52,9 @@ class _MyHomePageState extends State<MyHomePage>{
     new dynamicPage(),
     new shoppingPage(),
     new myPage(),
+//    new HeroPage(url: 'http://b-ssl.duitang.com/uploads/item/201704/30/20170430194407_JtvXr.thumb.224_0.jpeg',
+//      index: 0,
+//    ),
   ];
   Future<String> getColor() async{
     SharedPreferences sp = await SharedPreferences.getInstance();

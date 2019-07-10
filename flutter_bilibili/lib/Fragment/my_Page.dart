@@ -193,23 +193,32 @@ class _myPageState extends State<myPage> {
                                   childAspectRatio: 1),
                           physics: new NeverScrollableScrollPhysics(),
                           itemCount: 9,
-                          itemBuilder: (c, index) {
+                          itemBuilder: (c, imageIndex) {
                             return GestureDetector(
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(15.0),
-                                child: Image.network(
-                                    index%2==0?'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3409605815,553104213&fm=26&gp=0.jpg':'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3302790822,2591684234&fm=27&gp=0.jpg',
-                                    fit: BoxFit.fill),
+                                child: Hero(
+                                  tag: 'image${index}${imageIndex}',
+                                  transitionOnUserGestures: true,
+                                  child: Image.network(
+                                      imageIndex%2==0?'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3409605815,553104213&fm=26&gp=0.jpg':'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3302790822,2591684234&fm=27&gp=0.jpg',
+                                      fit: BoxFit.fill),
+                                ),
                               ),
                               onTap: () {
-                                Fluttertoast.showToast(
-                                    msg: "图片${index}",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.CENTER,
-                                    timeInSecForIos: 1,
-                                    backgroundColor: Colors.black38,
-                                    textColor: Colors.white,
-                                    fontSize: 13.0);
+                                Navigator.of(context).push(MaterialPageRoute(builder: (content)=>HeroPage(
+                                  url: imageIndex%2==0?'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3409605815,553104213&fm=26&gp=0.jpg':'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3302790822,2591684234&fm=27&gp=0.jpg',
+                                  index: index,
+                                  imageIndex:imageIndex,
+                                )));
+//                                Fluttertoast.showToast(
+//                                    msg: "图片${index}",
+//                                    toastLength: Toast.LENGTH_SHORT,
+//                                    gravity: ToastGravity.CENTER,
+//                                    timeInSecForIos: 1,
+//                                    backgroundColor: Colors.black38,
+//                                    textColor: Colors.white,
+//                                    fontSize: 13.0);
                               },
                             );
                           }),
@@ -383,6 +392,126 @@ class _myPageState extends State<myPage> {
     );
   }
 }
+
+
+class HeroPage extends StatefulWidget {
+  final String url;
+  final int index;
+final int imageIndex;
+  const HeroPage({Key key, this.url, this.index, this.imageIndex}) : super(key: key);
+  @override
+  _HeroPageState createState() => _HeroPageState();
+}
+
+class _HeroPageState extends State<HeroPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('HeroPage'),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Hero(tag: 'image${widget.index}${widget.imageIndex}',
+              transitionOnUserGestures: true,
+              child: Image.network(
+                widget.url,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.width*0.8,
+                fit: BoxFit.fill,
+              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Container(
+              height: 50.0,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  ClipOval(
+                    child: Image.asset(
+                      'images/user.png',
+                      width: 30,
+                      height: 30,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          '空空如也',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        Text(
+                          '昨天 18：00 来自音乐节',
+                          style: TextStyle(
+                            fontSize: 11,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 20,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                      border: Border.all(width: 0.5, color: Colors.pink),
+                    ),
+                    child: GestureDetector(
+                      child: Center(
+                        child: Text(
+                          '关注',
+                          style: TextStyle(fontSize: 11, color: Colors.black54),
+                        ),
+                      ),
+                      onTap: () {
+                        Fluttertoast.showToast(
+                            msg: "关注成功",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            timeInSecForIos: 1,
+                            backgroundColor: Colors.black38,
+                            textColor: Colors.white,
+                            fontSize: 13.0);
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Icon(
+                    Icons.close,
+                    size: 17,
+                    color: Colors.black45,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Text(
+              widget.imageIndex % 2 == 0
+                  ? '清洗端午，纵情飞跃，呵呵哈哈上证报中国证券网讯 资本相继涌入持牌消费金融公司,这次又有一家互联网巨头入局。 继度小满日前获批入股哈银消费金融公司之后,新浪微博成为新晋玩家。...'
+                  : '新浪微博成为新晋玩家。...',
+              style: TextStyle(fontSize: 12, color: Colors.black),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
 
 class tool extends ScreenUtil {
   static const String wo = 'wo';

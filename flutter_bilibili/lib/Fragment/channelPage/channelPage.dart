@@ -107,15 +107,16 @@ class _channelPageState extends State<channelPage> with SingleTickerProviderStat
                         ),
                       ),
                       onTap: (){
-                        Fluttertoast.showToast(
-                            msg: "This is Center Short Toast",
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.CENTER,
-                            timeInSecForIos: 1,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 16.0
-                        );
+                        Navigator.of(context).push(MaterialPageRoute(builder: (content)=>AlertPage()));
+//                        Fluttertoast.showToast(
+//                            msg: "This is Center Short Toast",
+//                            toastLength: Toast.LENGTH_SHORT,
+//                            gravity: ToastGravity.CENTER,
+//                            timeInSecForIos: 1,
+//                            backgroundColor: Colors.red,
+//                            textColor: Colors.white,
+//                            fontSize: 16.0
+//                        );
                       },
                     );
                   }
@@ -749,4 +750,54 @@ class _hotCircleState extends State<hotCircle> with AutomaticKeepAliveClientMixi
   @override
   // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
+}
+
+//TODO:AlertPage
+class AlertPage extends StatefulWidget {
+  @override
+  _AlertPageState createState() => _AlertPageState();
+}
+
+class _AlertPageState extends State<AlertPage> {
+  _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => Container(
+        child: ListView(
+          // 生成一个列表选择器
+            children: List.generate(
+              20,
+                  (index) => InkWell(
+                  child: Container(alignment: Alignment.center, height: 60.0, child: Text('Item ${index + 1}')),
+                  onTap: () {
+                    print('tapped item ${index + 1}');
+                    Navigator.pop(context);
+                  }),
+            )),
+        color: Colors.amber,
+//        height: 300,
+      ),
+    );
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Alert'),),
+      body: Builder(builder: (context){
+        return ListView(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.all(5),
+              child: RaisedButton(
+                  child: Text('ModalBottomSheet'),
+                  onPressed: (){
+                    _showBottomSheet(context);
+                  }
+              ),
+            ),
+          ],
+        );
+      }),
+    );
+  }
 }
