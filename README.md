@@ -1,5 +1,6 @@
 ## bilibili
 学习flutter
+## 有时间了，每天都会更新,请给个星星✨
 ## 图片
 ![Image text](https://raw.githubusercontent.com/Captain-MK/bilibili/master/imageAdress/shouye%402x.png "首页")
 ![Image text](https://raw.githubusercontent.com/Captain-MK/bilibili/master/imageAdress/guangyiguang11%402x.png "携程")
